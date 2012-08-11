@@ -4,8 +4,11 @@ A JavaScript library for UIGestureRecognizer-like behavior in Mobile Safari
 
 project page: http://mud.mitplw.com/JSGestureRecognizer/
 author: Takashi Okamoto - http://mud.mitplw.com/
+author: Michael Bester - http://kimili.com
 
 == Change Log ==
 
 Version 1.0:
 * Initial commit.
+Version 1.1:
+* Removing dependency on Prototype and jQuery.

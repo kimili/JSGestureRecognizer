@@ -1,10 +1,10 @@
 (function(w) {
 
-	var MobileSafari = (function() {
-		return (/Apple.*Mobile/).test(navigator.userAgent);
+	var touchEvents = (function() {
+		return (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
 	})();
 
-	if (!MobileSafari) {
+	if ( ! touchEvents) {
 		JSTouchStart     = 'mousedown',
 		JSTouchMove      = 'mousemove',
 		JSTouchEnd       = 'mouseup',
@@ -22,7 +22,7 @@
 
 	// -- Event extension -------------------------------------------------------
 	var allTouches;
-	if ( ! MobileSafari ) {
+	if ( ! touchEvents ) {
 		allTouches = function() {
 			var touches = [this];
 			if (this.altKey) {

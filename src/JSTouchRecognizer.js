@@ -174,7 +174,7 @@ var JSTouchRecognizer = Class.extend({
 	},
 
 	getEventPoint: function(event) {
-		if (MobileSafari) {
+		if (touchEvents) {
 			return { x: event.targetTouches[0].pageX, y: event.targetTouches[0].pageY };
 		}
 		return { x: event.pageX, y: event.pageY };

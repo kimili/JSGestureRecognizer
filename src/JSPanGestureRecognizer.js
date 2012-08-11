@@ -21,7 +21,7 @@ var JSPanGestureRecognizer = JSGestureRecognizer.extend({
 		var allTouches = event.allTouches();
 		if (allTouches.length >= this.minimumNumberOfTouches &&
 				allTouches.length <= this.maximumNumberOfTouches) {
-			if (MobileSafari) {
+			if (touchEvents) {
 				if (event.target != this.target) {
 					this.touchend(event);
 					return;
@@ -46,7 +46,7 @@ var JSPanGestureRecognizer = JSGestureRecognizer.extend({
 	},
 
 	touchend: function(event) {
-		if (event.target === this.target || !MobileSafari) {
+		if (event.target === this.target || !touchEvents) {
 			this._super(event);
 			if (this.beganRecognizer) {
 				this.fire(this.target, JSGestureRecognizerStateEnded, this);

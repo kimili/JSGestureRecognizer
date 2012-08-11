@@ -30,11 +30,11 @@ var JSGestureRecognizerStatePossible   = 'JSGestureRecognizer:possible',
     JSSwipeGestureRecognizerDirectionDown  = 1 << 3;
 (function(w) {
 
-	var MobileSafari = (function() {
-		return (/Apple.*Mobile/).test(navigator.userAgent);
+	var touchEvents = (function() {
+		return (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
 	})();
 
-	if (!MobileSafari) {
+	if ( ! touchEvents) {
 		JSTouchStart     = 'mousedown',
 		JSTouchMove      = 'mousemove',
 		JSTouchEnd       = 'mouseup',
@@ -52,7 +52,7 @@ var JSGestureRecognizerStatePossible   = 'JSGestureRecognizer:possible',
 
 	// -- Event extension -------------------------------------------------------
 	var allTouches;
-	if ( ! MobileSafari ) {
+	if ( ! touchEvents ) {
 		allTouches = function() {
 			var touches = [this];
 			if (this.altKey) {
@@ -243,7 +243,7 @@ var JSTouchRecognizer = Class.extend({
 	},
 
 	getEventPoint: function(event) {
-		if (MobileSafari) {
+		if (touchEvents) {
 			return { x: event.targetTouches[0].pageX, y: event.targetTouches[0].pageY };
 		}
 		return { x: event.pageX, y: event.pageY };
@@ -364,7 +364,7 @@ var JSTapGestureRecognizer = JSTouchRecognizer.extend({
 	touchmove: function(event) {
 		// move events fire even if there's no move on desktop browsers
 		// the idea of a "tap" with mouse should ignore movement anyway...
-		if (event.target === this.target && !MobileSafari) {
+		if (event.target === this.target && !touchEvents) {
 			event.preventDefault();
 			this.removeObservers();
 			this.fire(this.target, JSGestureRecognizerStateFailed, this);
@@ -432,7 +432,7 @@ var JSLongPressGestureRecognizer = JSGestureRecognizer.extend({
 	},
 
 	touchmove: function(event) {
-		if (event.target === this.target && MobileSafari) {
+		if (event.target === this.target && touchEvents) {
 			event.preventDefault();
 			this.fire(this.target, JSGestureRecognizerStateFailed, this);
 		}
@@ -482,7 +482,7 @@ var JSPanGestureRecognizer = JSGestureRecognizer.extend({
 		var allTouches = event.allTouches();
 		if (allTouches.length >= this.minimumNumberOfTouches &&
 				allTouches.length <= this.maximumNumberOfTouches) {
-			if (MobileSafari) {
+			if (touchEvents) {
 				if (event.target != this.target) {
 					this.touchend(event);
 					return;
@@ -507,7 +507,7 @@ var JSPanGestureRecognizer = JSGestureRecognizer.extend({
 	},
 
 	touchend: function(event) {
-		if (event.target === this.target || !MobileSafari) {
+		if (event.target === this.target || !touchEvents) {
 			this._super(event);
 			if (this.beganRecognizer) {
 				this.fire(this.target, JSGestureRecognizerStateEnded, this);

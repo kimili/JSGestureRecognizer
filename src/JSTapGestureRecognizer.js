@@ -20,7 +20,7 @@ var JSTapGestureRecognizer = JSTouchRecognizer.extend({
 	touchmove: function(event) {
 		// move events fire even if there's no move on desktop browsers
 		// the idea of a "tap" with mouse should ignore movement anyway...
-		if (event.target === this.target && !MobileSafari) {
+		if (event.target === this.target && !touchEvents) {
 			event.preventDefault();
 			this.removeObservers();
 			this.fire(this.target, JSGestureRecognizerStateFailed, this);

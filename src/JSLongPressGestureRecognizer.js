@@ -21,7 +21,7 @@ var JSLongPressGestureRecognizer = JSGestureRecognizer.extend({
 	},
 
 	touchmove: function(event) {
-		if (event.target === this.target && MobileSafari) {
+		if (event.target === this.target && touchEvents) {
 			event.preventDefault();
 			this.fire(this.target, JSGestureRecognizerStateFailed, this);
 		}

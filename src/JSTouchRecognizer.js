@@ -144,9 +144,19 @@ var JSTouchRecognizer = Class.extend({
 	// make this section library independent
 	fire: function(target, eventName, obj) {
 		var evt;
-		evt = new CustomEvent(eventName, obj);
+		if ( document.createEvent ) {
+			evt = document.createEvent('CustomEvent');
+			evt.initEvent(eventName, true, true);
+		} else {
+			evt = document.createEventObject();
+			evt.eventType = eventName;
+		}
 		evt.memo = obj || {};
-		target.dispatchEvent(evt);
+		if ( document.createEvent ) {
+			target.dispatchEvent(evt);
+		} else {
+			target.fireEvent('on' + evt.eventType, evt);
+		}
 	},
 
 	observe: function(target, eventName, handler) {

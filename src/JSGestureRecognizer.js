@@ -22,7 +22,7 @@ var JSGestureRecognizer = JSTouchRecognizer.extend({
 
 	// -- Gesture Events --------------------------------------------------------
 	gesturestart: function(event) {
-		if (this.target && event.target == this.target) {
+		if (this.target && event.target === this.target) {
 			this.addGestureObservers();
 			this.fire(this.target, JSGestureRecognizerStatePossible, this);
 		}
@@ -30,7 +30,7 @@ var JSGestureRecognizer = JSTouchRecognizer.extend({
 
 	gesturechange: function(event) {},
 	gestureend: function(event) {
-		if (this.target && event.target == this.target) {
+		if (this.target && event.target === this.target) {
 			this.fire(this.target, JSGestureRecognizerStateEnded, this);
 		}
 	},
@@ -39,7 +39,7 @@ var JSGestureRecognizer = JSTouchRecognizer.extend({
 	// -- Event Handlers --------------------------------------------------------
 	ended: function(event, memo) {
 		if (!event.memo) event.memo = memo;
-		if (event.memo == this) {
+		if (event.memo === this) {
 			this.state = JSGestureRecognizerStateEnded;
 			if (this.callback) {
 				this.callback(this);
@@ -52,7 +52,7 @@ var JSGestureRecognizer = JSTouchRecognizer.extend({
 
 	cancelled: function(event, memo) {
 		if (!event.memo) event.memo = memo;
-		if (event.memo == this) {
+		if (event.memo === this) {
 			this.state = JSGestureRecognizerStateCancelled;
 			if (this.callback) {
 				this.callback(this);
@@ -65,7 +65,7 @@ var JSGestureRecognizer = JSTouchRecognizer.extend({
 
 	failed: function(event, memo) {
 		if (!event.memo) event.memo = memo;
-		if (event.memo == this) {
+		if (event.memo === this) {
 			this.state = JSGestureRecognizerStateFailed;
 			if (this.callback) {
 				this.callback(this);

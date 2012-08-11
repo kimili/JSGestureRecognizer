@@ -8,7 +8,7 @@ var JSTapGestureRecognizer = JSTouchRecognizer.extend({
 	},
 
 	touchstart: function(event) {
-		if (event.target == this.target) {
+		if (event.target === this.target) {
 			event.preventDefault();
 			this._super(event);
 			this.numberOfTouches = event.allTouches().length;
@@ -20,7 +20,7 @@ var JSTapGestureRecognizer = JSTouchRecognizer.extend({
 	touchmove: function(event) {
 		// move events fire even if there's no move on desktop browsers
 		// the idea of a "tap" with mouse should ignore movement anyway...
-		if (event.target == this.target && !MobileSafari) {
+		if (event.target === this.target && !MobileSafari) {
 			event.preventDefault();
 			this.removeObservers();
 			this.fire(this.target, JSGestureRecognizerStateFailed, this);
@@ -35,8 +35,8 @@ var JSTapGestureRecognizer = JSTouchRecognizer.extend({
 	},
 
 	touchend: function(event) {
-		if (event && event.target == this.target) {
-			if (this.numberOfTouches == this.numberOfTouchesRequired) {
+		if (event && event.target === this.target) {
+			if (this.numberOfTouches === this.numberOfTouchesRequired) {
 				this._super(event);
 				this.taps++;
 				if (this.recognizerTimer) {
@@ -44,7 +44,7 @@ var JSTapGestureRecognizer = JSTouchRecognizer.extend({
 					this.recognizerTimer = null;
 				}
 				this.recognizerTimer = window.setTimeout(function() {
-					if (this.taps == this.numberOfTapsRequired) {
+					if (this.taps === this.numberOfTapsRequired) {
 						this.fire(this.target, JSGestureRecognizerStateRecognized, this);
 					} else {
 						this.fire(this.target, JSGestureRecognizerStateFailed, this);

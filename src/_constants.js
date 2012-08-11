@@ -4,17 +4,17 @@ var JSGestureRecognizerStatePossible   = 'JSGestureRecognizer:possible',
     JSGestureRecognizerStateEnded      = 'JSGestureRecognizer:ended',
     JSGestureRecognizerStateCancelled  = 'JSGestureRecognizer:cancelled',
     JSGestureRecognizerStateFailed     = 'JSGestureRecognizer:failed',
-    JSGestureRecognizerStateRecognized = JSGestureRecognizerStateEnded;
+    JSGestureRecognizerStateRecognized = JSGestureRecognizerStateEnded,
 
-var JSTouchStart     = 'touchstart',
+    JSTouchStart     = 'touchstart',
     JSTouchMove      = 'touchmove',
     JSTouchEnd       = 'touchend',
     JSTouchCancelled = 'touchcancelled',
     JSGestureStart   = 'gesturestart',
     JSGestureChange  = 'gesturechange',
-    JSGestureEnd     = 'gestureend';
+    JSGestureEnd     = 'gestureend',
 
-var JSSwipeGestureRecognizerDirectionRight = 1 << 0,
+    JSSwipeGestureRecognizerDirectionRight = 1 << 0,
     JSSwipeGestureRecognizerDirectionLeft  = 1 << 1,
     JSSwipeGestureRecognizerDirectionUp    = 1 << 2,
     JSSwipeGestureRecognizerDirectionDown  = 1 << 3;

@@ -1,7 +1,7 @@
 // -- Abstract Class: JSTouchRecognizer -------------------------------------
 var JSTouchRecognizer = Class.extend({
 	initWithCallback: function(callback) {
-		if (typeof callback == 'function') {
+		if (typeof callback === 'function') {
 			this.callback = callback;
 		} else {
 			throw new Error("Callback must be set otherwise this won't do anything!");
@@ -51,7 +51,7 @@ var JSTouchRecognizer = Class.extend({
 
 	// -- Touch Events ----------------------------------------------------------
 	touchstart: function(event, obj) {
-		if (this.target && event.target == this.target) {
+		if (this.target && event.target === this.target) {
 			this.addObservers();
 			this.fire(this.target, JSGestureRecognizerStatePossible, this);
 		}
@@ -65,7 +65,7 @@ var JSTouchRecognizer = Class.extend({
 	// -- Event Handlers --------------------------------------------------------
 	possible: function(event, memo) {
 		if (!event.memo) event.memo = memo;
-		if (event.memo == this) {
+		if (event.memo === this) {
 			this.state = JSGestureRecognizerStatePossible;
 			if (this.callback) {
 				this.callback(this);
@@ -75,7 +75,7 @@ var JSTouchRecognizer = Class.extend({
 
 	began: function(event, memo) {
 		if (!event.memo) event.memo = memo;
-		if (event.memo == this) {
+		if (event.memo === this) {
 			this.state = JSGestureRecognizerStateBegan;
 			if (this.callback) {
 				this.callback(this);
@@ -85,7 +85,7 @@ var JSTouchRecognizer = Class.extend({
 
 	ended: function(event, memo) {
 		if (!event.memo) event.memo = memo;
-		if (event.memo == this) {
+		if (event.memo === this) {
 			this.state = JSGestureRecognizerStateEnded;
 			if (this.callback) {
 				this.callback(this);
@@ -97,7 +97,7 @@ var JSTouchRecognizer = Class.extend({
 
 	cancelled: function(event, memo) {
 		if (!event.memo) event.memo = memo;
-		if (event.memo == this) {
+		if (event.memo === this) {
 			this.state = JSGestureRecognizerStateCancelled;
 			if (this.callback) {
 				this.callback(this);
@@ -109,7 +109,7 @@ var JSTouchRecognizer = Class.extend({
 
 	failed: function(event, memo) {
 		if (!event.memo) event.memo = memo;
-		if (event.memo == this) {
+		if (event.memo === this) {
 			this.state = JSGestureRecognizerStateFailed;
 			if (this.callback) {
 				this.callback(this);
@@ -121,7 +121,7 @@ var JSTouchRecognizer = Class.extend({
 
 	changed: function(event, memo) {
 		if (!event.memo) event.memo = memo;
-		if (event.memo == this) {
+		if (event.memo === this) {
 			this.state = JSGestureRecognizerStateChanged;
 			if (this.callback) {
 				this.callback(this);

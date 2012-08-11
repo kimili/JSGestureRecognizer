@@ -1,4 +1,4 @@
-/*  JSGestureRecognizer, Version 1.0
+/*  JSGestureRecognizer, Version 1.1
  *  (c) 2011 Takashi Okamoto - BuzaMoto
  *
  *  JSGestureRecognizer is a JavaScript implementation of
